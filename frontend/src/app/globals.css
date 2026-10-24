@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  --bg-midnight: #080C15;
+  --bg-card: #0F172A;
+  --bg-card-hover: #152238;
+  --border-subtle: #1E293B;
+  --border-cyan: rgba(0, 240, 255, 0.35);
+  --cyan-accent: #00F0FF;
+  --cyan-glow: rgba(0, 240, 255, 0.18);
+  --cyan-dim: #0891B2;
+}
+
+body {
+  background-color: var(--bg-midnight);
+  color: #F1F5F9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Subtle glowing pulse */
+@keyframes cyanPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
+  }
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+}
+
+.glow-cyan-card {
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.glow-cyan-card:hover {
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.15);
+}
+
+/* Watermark backdrop overlay */
+.watermark-overlay {
+  background-image: repeating-linear-gradient(
+    -30deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.03) 40px,
+    transparent 40px,
+    transparent 120px
+  );
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00F0FF;
+}
