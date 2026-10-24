@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TrustVault: Secure Document Sharing. Verifiable Trust.
 
 > **Enterprise Confidential Document Enclave with AES-256-GCM Encryption, Centralized Server Authorization, and HMAC-SHA256 Cryptographic Audit Hash Chains.**
@@ -179,3 +180,7 @@ npm run dev
 
 Open **http://localhost:3000** in your browser.
 Interactive OpenAPI documentation is available at **http://127.0.0.1:8000/docs**.
+=======
+# TrustVault
+TrustVault — Secure Document Sharing with a Verifiable Audit Trail. A security-focused document management platform featuring role-based access control, encrypted file storage, per-document permissions, immediate access revocation, and tamper-evident audit logging.
+>>>>>>> 65e3aa63b0d8802497d3b4cdb48601cde517853b
