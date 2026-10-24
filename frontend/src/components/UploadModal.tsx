@@ -59,35 +59,36 @@ export const UploadModal: React.FC<UploadModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-lg rounded-2xl bg-[#0D1322] border border-cyan-500/30 shadow-[0_0_40px_rgba(0,240,255,0.15)] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+      <div className="relative w-full max-w-xl rounded-2xl glass-card-static border border-[rgba(116,177,235,0.3)] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden">
+        
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0F172A]">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-[rgba(116,177,235,0.2)] bg-[#091D36]/90">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-cyan-950/60 border border-cyan-500/40 text-cyan-400">
+            <div className="p-2.5 rounded-xl bg-[#0E284A] border border-[#42D9FF]/35 text-[#42D9FF]">
               <Lock className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white tracking-wide">
+              <h3 className="text-lg font-bold text-white tracking-wide">
                 Encrypt & Vault Document
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#B6C9E3]">
                 AES-256-GCM authenticated encryption at rest
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-2 rounded-lg text-[#859DBE] hover:text-white hover:bg-[#0E2C52] transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Form Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-4">
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-950/50 border border-rose-800/60 text-xs text-rose-300 flex items-center space-x-2">
+            <div className="p-3.5 rounded-xl bg-rose-950/70 border border-rose-800/60 text-xs text-rose-300 flex items-center space-x-2">
               <AlertCircle className="w-4 h-4 flex-shrink-0 text-rose-400" />
               <span>{error}</span>
             </div>
@@ -95,12 +96,12 @@ export const UploadModal: React.FC<UploadModalProps> = ({
 
           {/* File Drop Area */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+            <label className="block text-xs font-semibold text-[#DCEEFF] mb-1.5 uppercase tracking-wider">
               Select Document File
             </label>
             <div
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-slate-700 hover:border-cyan-500/60 rounded-xl p-5 text-center cursor-pointer bg-slate-900/50 hover:bg-slate-900 transition group"
+              className="border-2 border-dashed border-[rgba(116,177,235,0.3)] hover:border-[#42D9FF]/70 rounded-xl p-6 text-center cursor-pointer bg-[#07172C]/70 hover:bg-[#07172C] transition group"
             >
               <input
                 ref={fileInputRef}
@@ -108,22 +109,22 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 className="hidden"
                 onChange={handleFileChange}
               />
-              <Upload className="w-7 h-7 text-slate-500 group-hover:text-cyan-400 mx-auto mb-2 transition" />
+              <Upload className="w-8 h-8 text-[#859DBE] group-hover:text-[#42D9FF] mx-auto mb-2.5 transition" />
               {file ? (
                 <div className="space-y-1">
-                  <div className="text-xs font-semibold text-cyan-300 truncate max-w-xs mx-auto">
+                  <div className="text-sm font-semibold text-[#42D9FF] truncate max-w-xs mx-auto">
                     {file.name}
                   </div>
-                  <div className="text-[10px] text-slate-400 font-mono">
+                  <div className="text-xs text-[#B6C9E3] font-mono">
                     {(file.size / 1024).toFixed(1)} KB • {file.type || 'binary/raw'}
                   </div>
                 </div>
               ) : (
                 <div className="space-y-1">
-                  <span className="text-xs text-slate-300 font-medium">
+                  <span className="text-sm text-[#F4F8FF] font-medium">
                     Click to choose file, or drag and drop
                   </span>
-                  <p className="text-[10px] text-slate-500 font-mono">
+                  <p className="text-xs text-[#859DBE] font-mono">
                     PDF, DOCX, XLSX, TXT, MD, CSV, PNG, JSON (Max 25MB)
                   </p>
                 </div>
@@ -133,7 +134,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
 
           {/* Document Title */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label className="block text-xs font-semibold text-[#DCEEFF] mb-1.5 uppercase tracking-wider">
               Document Display Title
             </label>
             <input
@@ -142,19 +143,19 @@ export const UploadModal: React.FC<UploadModalProps> = ({
               placeholder="e.g. Q3 SOC2 Security Assessment"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/50"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#07172C] border border-[rgba(116,177,235,0.25)] text-sm text-[#F4F8FF] placeholder-[#5A7698] focus:outline-none focus:border-[#42D9FF]"
             />
           </div>
 
           {/* Classification Level */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label className="block text-xs font-semibold text-[#DCEEFF] mb-1.5 uppercase tracking-wider">
               Security Classification Level
             </label>
             <select
               value={classification}
               onChange={(e) => setClassification(e.target.value)}
-              className="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-200 focus:outline-none focus:border-cyan-500/50"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#07172C] border border-[rgba(116,177,235,0.25)] text-sm text-[#F4F8FF] focus:outline-none focus:border-[#42D9FF]"
             >
               <option value="CONFIDENTIAL">CONFIDENTIAL (Highest protection, restricted distribution)</option>
               <option value="RESTRICTED">RESTRICTED (Compliance & Executive only)</option>
@@ -164,12 +165,12 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           </div>
 
           {/* Security Guarantee Summary */}
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-slate-400 space-y-1">
-            <div className="flex items-center space-x-1.5 text-cyan-400 font-semibold text-xs">
-              <ShieldCheck className="w-3.5 h-3.5" />
+          <div className="p-3.5 rounded-xl bg-[#081B33]/80 border border-[rgba(116,177,235,0.2)] text-xs text-[#B6C9E3] space-y-1">
+            <div className="flex items-center space-x-1.5 text-[#42D9FF] font-semibold">
+              <ShieldCheck className="w-4 h-4" />
               <span>Automated Cryptographic Guarantees</span>
             </div>
-            <ul className="list-disc pl-4 space-y-0.5 text-slate-400 text-[10px] font-mono">
+            <ul className="list-disc pl-4 space-y-0.5 text-[#859DBE] text-[11px] font-mono">
               <li>Cipher: AES-256-GCM with 96-bit cryptographically random nonce</li>
               <li>Payload stored under opaque random storage token; original filename stripped</li>
               <li>Plaintext SHA-256 digest recorded in HMAC-SHA256 audit block</li>
@@ -177,18 +178,18 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           </div>
 
           {/* Actions */}
-          <div className="pt-2 flex items-center justify-end space-x-2">
+          <div className="pt-2 flex items-center justify-end space-x-3">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition"
+              className="px-4 py-2.5 rounded-xl text-sm text-[#B6C9E3] hover:text-white hover:bg-[#0E284A] transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs tracking-wide shadow-lg shadow-cyan-500/20 active:scale-95 transition disabled:opacity-50"
+              className="px-6 py-2.5 rounded-xl btn-primary-blue font-bold text-sm tracking-wide shadow-lg active:scale-95 transition disabled:opacity-50"
             >
               {loading ? 'Encrypting & Storing...' : 'Encrypt & Store'}
             </button>

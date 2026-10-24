@@ -47,6 +47,18 @@ def seed_database():
                 "full_name": "Charlie Vance (External Contractor)",
                 "password": "CharliePass123!#",
                 "role": AppRole.VIEWER
+            },
+            {
+                "email": "security@trustvault.internal",
+                "full_name": "SOC Lead Analyst",
+                "password": "SecOfficer123!#",
+                "role": AppRole.ADMIN
+            },
+            {
+                "email": "auditor@trustvault.internal",
+                "full_name": "Compliance Officer",
+                "password": "AuditorPass123!#",
+                "role": AppRole.VIEWER
             }
         ]
 

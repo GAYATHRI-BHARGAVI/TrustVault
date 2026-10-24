@@ -2,7 +2,7 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import User, UserSession, AuditLog
+from app.models import User, UserSession, AuditLog, AppRole
 from app.schemas import RiskAssessmentResponse
 from app.services.risk_service import risk_engine
 from app.services.auth_service import auth_service
@@ -22,7 +22,8 @@ def get_risk_assessment(
     and download velocity. Returns severity and actionable recommendations.
     """
     target_email = current_user.email
-    if email and current_user.role in ("admin", "security_officer", "compliance_auditor"):
+    is_admin = current_user.role in (AppRole.ADMIN, "ADMIN", "admin", "security_officer", "compliance_auditor")
+    if email and is_admin:
         target_email = email.lower().strip()
 
     assessment = risk_engine.calculate_user_risk(db, target_email)
@@ -36,6 +37,10 @@ def get_fleet_risk(
     """
     Returns risk status for all users in the organization for dashboard visualization.
     """
+    is_admin = current_user.role in (AppRole.ADMIN, "ADMIN", "admin", "security_officer", "compliance_auditor")
+    if not is_admin:
+        raise HTTPException(status_code=403, detail="Admin role required to view fleet-wide risk telemetry.")
+
     users = db.query(User).filter(User.is_active == True).all()
     fleet = []
     high_critical_count = 0
@@ -61,7 +66,8 @@ def trigger_user_kill_switch(
     """
     Immediate emergency session revocation for suspected credential compromise.
     """
-    if current_user.role not in ("admin", "security_officer"):
+    is_admin = current_user.role in (AppRole.ADMIN, "ADMIN", "admin", "security_officer")
+    if not is_admin:
         raise HTTPException(status_code=403, detail="Only security officers or admins can trigger the emergency kill switch.")
 
     target_user = db.query(User).filter(User.id == user_id).first()

@@ -62,17 +62,20 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS configuration for Next.js frontend - trusted development origins only
+# CORS configuration for Next.js frontend - supports local development and deployed origins
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:3001",
     "http://127.0.0.1:3001",
+    "https://13.204.213.166",
+    "http://13.204.213.166",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1|13\.204\.213\.166|192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

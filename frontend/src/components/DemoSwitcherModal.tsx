@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { X, ShieldAlert, CheckCircle, ArrowRight, UserCheck, Shield } from 'lucide-react';
+import { X, ShieldAlert, CheckCircle, ArrowRight, Shield } from 'lucide-react';
 import { api } from '@/lib/api';
 
 interface DemoSwitcherModalProps {
@@ -46,43 +46,44 @@ export const DemoSwitcherModal: React.FC<DemoSwitcherModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
-      <div className="relative w-full max-w-2xl rounded-2xl bg-[#0D1322] border border-cyan-500/30 shadow-[0_0_40px_rgba(0,240,255,0.15)] overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+      <div className="relative w-full max-w-2xl rounded-2xl glass-card-static border border-[rgba(116,177,235,0.3)] shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden">
+        
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-[#0F172A]">
+        <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-[rgba(116,177,235,0.2)] bg-[#091D36]/90">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-lg bg-cyan-950/60 border border-cyan-500/40 text-cyan-400">
+            <div className="p-2.5 rounded-xl bg-[#0E284A] border border-[#42D9FF]/35 text-[#42D9FF]">
               <Shield className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white tracking-wide">
+              <h3 className="text-lg font-bold text-white tracking-wide">
                 Demo Identity Selector
               </h3>
-              <p className="text-xs text-slate-400">
-                Isolated local development role simulator
+              <p className="text-xs text-[#B6C9E3]">
+                Switch between pre-seeded test personas to evaluate authorization boundaries
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+            className="p-2 rounded-lg text-[#859DBE] hover:text-white hover:bg-[#0E2C52] transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Security Notice Banner */}
-        <div className="px-6 py-2.5 bg-amber-950/40 border-b border-amber-800/40 flex items-center space-x-2 text-xs text-amber-300">
-          <ShieldAlert className="w-4 h-4 flex-shrink-0 text-amber-400" />
+        <div className="px-6 sm:px-8 py-3 bg-[#0C2442]/80 border-b border-[rgba(116,177,235,0.18)] flex items-center space-x-2 text-xs text-[#DCEEFF]">
+          <ShieldAlert className="w-4 h-4 flex-shrink-0 text-[#42D9FF]" />
           <span>
-            <strong>Development Notice:</strong> This switcher is for isolated local testing. In production, real authentication with Argon2/PBKDF2 credentials and MFA is strictly enforced.
+            <strong>Development Notice:</strong> Generates real cryptographic sessions with PBKDF2 credentials to evaluate permission boundaries.
           </span>
         </div>
 
         {/* User Persona Cards */}
-        <div className="p-6 space-y-3 max-h-[60vh] overflow-y-auto">
+        <div className="p-6 sm:p-8 space-y-3 max-h-[60vh] overflow-y-auto">
           {error && (
-            <div className="p-3 rounded-lg bg-rose-950/50 border border-rose-800/60 text-xs text-rose-300">
+            <div className="p-3.5 rounded-xl bg-rose-950/70 border border-rose-800/60 text-xs text-rose-300">
               {error}
             </div>
           )}
@@ -96,29 +97,29 @@ export const DemoSwitcherModal: React.FC<DemoSwitcherModalProps> = ({
                 key={user.email}
                 className={`p-4 rounded-xl border transition-all ${
                   isCurrent
-                    ? 'bg-cyan-950/30 border-cyan-500/60 shadow-[0_0_15px_rgba(0,240,255,0.1)]'
-                    : 'bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-900'
-                } flex items-center justify-between`}
+                    ? 'bg-[#0E284A]/70 border-[#42D9FF]/50 shadow-[0_0_20px_rgba(66,217,255,0.15)]'
+                    : 'bg-[#07172C]/70 border-[rgba(116,177,235,0.2)] hover:border-[#42D9FF]/40 hover:bg-[#091D36]'
+                } flex items-center justify-between gap-4`}
               >
-                <div className="space-y-1 pr-4">
+                <div className="space-y-1 pr-2 truncate">
                   <div className="flex items-center space-x-2">
-                    <span className="font-semibold text-sm text-slate-100">
+                    <span className="font-bold text-sm text-white">
                       {user.full_name}
                     </span>
-                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-slate-800 text-cyan-300 border border-slate-700">
-                      {user.role_badge}
+                    <span className="text-[11px] font-mono uppercase px-2 py-0.5 rounded bg-[#0A223F] text-[#42D9FF] border border-[#168BFF]/30 font-bold">
+                      {user.role}
                     </span>
                     {isCurrent && (
-                      <span className="flex items-center space-x-1 text-[11px] text-cyan-400 font-medium">
+                      <span className="flex items-center space-x-1 text-[11px] text-emerald-400 font-medium">
                         <CheckCircle className="w-3.5 h-3.5" />
                         <span>Active</span>
                       </span>
                     )}
                   </div>
-                  <div className="text-xs text-slate-400 font-mono">
+                  <div className="text-xs text-[#859DBE] font-mono">
                     {user.email}
                   </div>
-                  <p className="text-xs text-slate-400 line-clamp-2">
+                  <p className="text-xs text-[#B6C9E3] line-clamp-1">
                     {user.description}
                   </p>
                 </div>
@@ -126,10 +127,10 @@ export const DemoSwitcherModal: React.FC<DemoSwitcherModalProps> = ({
                 <button
                   disabled={isCurrent || isLoading}
                   onClick={() => handleSwitch(user.email)}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all flex-shrink-0 ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-1.5 transition-all flex-shrink-0 ${
                     isCurrent
-                      ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                      : 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-md shadow-cyan-500/20 active:scale-95'
+                      ? 'bg-[#0E284A] text-[#859DBE] cursor-not-allowed border border-[rgba(116,177,235,0.2)]'
+                      : 'btn-primary-blue active:scale-95'
                   }`}
                 >
                   {isLoading ? (
@@ -149,10 +150,10 @@ export const DemoSwitcherModal: React.FC<DemoSwitcherModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-3 border-t border-slate-800 bg-[#0F172A] flex justify-end">
+        <div className="px-6 sm:px-8 py-4 border-t border-[rgba(116,177,235,0.2)] bg-[#091D36] flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg text-xs font-medium text-slate-300 hover:bg-slate-800 transition"
+            className="px-5 py-2 rounded-xl text-xs font-semibold bg-[#0E284A] hover:bg-[#163D6C] text-[#DCEEFF] transition"
           >
             Close
           </button>

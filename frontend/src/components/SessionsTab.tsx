@@ -53,117 +53,117 @@ export const SessionsTab: React.FC<SessionsTabProps> = ({ currentUser }) => {
       {/* Top Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white tracking-tight flex items-center space-x-2">
-            <Lock className="w-5 h-5 text-cyan-400" />
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center space-x-2.5">
+            <Lock className="w-6 h-6 text-[#42D9FF]" />
             <span>Session & Cryptographic Policy Management</span>
           </h2>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-sm text-[#B6C9E3] mt-1">
             Real backend session revocation, concurrent login prevention, and cryptographic posture inspection.
           </p>
         </div>
 
         <button
           onClick={loadData}
-          className="p-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-cyan-400 transition"
+          className="p-2.5 rounded-xl bg-[#091D36] border border-[rgba(116,177,235,0.25)] text-[#DCEEFF] hover:text-[#42D9FF] transition"
         >
           <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
         </button>
       </div>
 
       {msg && (
-        <div className="p-3.5 rounded-xl bg-cyan-950/50 border border-cyan-800/60 text-xs text-cyan-300 font-mono">
+        <div className="p-4 rounded-xl bg-[#0C2442] border border-[#42D9FF]/40 text-xs sm:text-sm text-[#DCEEFF] font-mono">
           {msg}
         </div>
       )}
 
       {/* Single Active Session Policy Banner */}
-      <div className="p-5 rounded-2xl bg-[#0D1525] border border-cyan-500/20 space-y-2">
-        <div className="flex items-center space-x-2">
-          <ShieldCheck className="w-5 h-5 text-cyan-400" />
-          <h3 className="text-sm font-bold text-white tracking-wide">
-            Single-Active-Session Enforcement Policy: <span className="text-cyan-400">ACTIVE</span>
+      <div className="p-6 rounded-2xl glass-card-static border border-[rgba(116,177,235,0.25)] space-y-2">
+        <div className="flex items-center space-x-2.5">
+          <ShieldCheck className="w-5 h-5 text-[#42D9FF]" />
+          <h3 className="text-base sm:text-lg font-bold text-white tracking-wide">
+            Single-Active-Session Enforcement Policy: <span className="text-[#42D9FF]">ACTIVE</span>
           </h3>
         </div>
-        <p className="text-xs text-slate-400 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-[#B6C9E3] leading-relaxed max-w-3xl">
           TrustVault is configured with a strict single-active-session policy. Establishing a new authenticated session immediately revokes prior session tokens for that user account. Old sessions attempting API queries receive an immediate HTTP 401 Unauthorized rejection, preventing session hijacking and credential reuse.
         </p>
       </div>
 
       {/* Cryptographic Posture Card */}
       {policy && (
-        <div className="rounded-2xl p-5 bg-[#0F172A]/70 border border-slate-800 space-y-3">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-slate-200 flex items-center space-x-1.5">
-            <Key className="w-4 h-4 text-cyan-400" />
+        <div className="rounded-2xl p-6 glass-card-static border border-[rgba(116,177,235,0.22)] space-y-3.5">
+          <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-white flex items-center space-x-2">
+            <Key className="w-4 h-4 text-[#42D9FF]" />
             <span>Active Cryptographic Parameters</span>
           </h3>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-mono">
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-              <span className="text-[10px] text-slate-500 block uppercase">Vault Cipher</span>
-              <span className="text-cyan-300 font-bold">{policy.cipher}</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 text-xs font-mono">
+            <div className="p-3.5 rounded-xl bg-[#07172C] border border-[rgba(116,177,235,0.2)]">
+              <span className="text-[10px] text-[#859DBE] block uppercase font-bold">Vault Cipher</span>
+              <span className="text-[#42D9FF] font-bold text-sm mt-0.5 block">{policy.cipher}</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-              <span className="text-[10px] text-slate-500 block uppercase">Key / Nonce / Tag</span>
-              <span className="text-slate-200">256b / 96b / 128b</span>
+            <div className="p-3.5 rounded-xl bg-[#07172C] border border-[rgba(116,177,235,0.2)]">
+              <span className="text-[10px] text-[#859DBE] block uppercase font-bold">Key / Nonce / Tag</span>
+              <span className="text-[#F4F8FF] text-sm mt-0.5 block">256b / 96b / 128b</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-              <span className="text-[10px] text-slate-500 block uppercase">Audit Chain</span>
-              <span className="text-emerald-400 font-bold">HMAC-SHA256</span>
+            <div className="p-3.5 rounded-xl bg-[#07172C] border border-[rgba(116,177,235,0.2)]">
+              <span className="text-[10px] text-[#859DBE] block uppercase font-bold">Audit Chain</span>
+              <span className="text-emerald-400 font-bold text-sm mt-0.5 block">HMAC-SHA256</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
-              <span className="text-[10px] text-slate-500 block uppercase">Session Timeout</span>
-              <span className="text-slate-200">{policy.session_timeout_minutes} minutes</span>
+            <div className="p-3.5 rounded-xl bg-[#07172C] border border-[rgba(116,177,235,0.2)]">
+              <span className="text-[10px] text-[#859DBE] block uppercase font-bold">Session Timeout</span>
+              <span className="text-[#F4F8FF] text-sm mt-0.5 block">{policy.session_timeout_minutes} min</span>
             </div>
           </div>
         </div>
       )}
 
       {/* Sessions List */}
-      <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-slate-200">
+      <div className="space-y-3.5">
+        <h3 className="text-base sm:text-lg font-bold text-white">
           User Sessions History ({sessions.length})
         </h3>
 
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           {sessions.map((sess) => {
             const isRevoking = revokingId === sess.id;
 
             return (
               <div
                 key={sess.id}
-                className={`p-4 rounded-xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${
+                className={`p-5 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all ${
                   sess.is_current
-                    ? 'bg-cyan-950/20 border-cyan-500/40'
+                    ? 'bg-[#0E284A]/70 border-[#42D9FF]/45 shadow-[0_0_25px_rgba(66,217,255,0.12)]'
                     : sess.is_active
-                    ? 'bg-slate-900/70 border-slate-800'
-                    : 'bg-slate-900/30 border-slate-800/40 opacity-60'
+                    ? 'bg-[#07172C]/70 border-[rgba(116,177,235,0.22)]'
+                    : 'bg-[#07172C]/30 border-[rgba(116,177,235,0.12)] opacity-60'
                 }`}
               >
-                <div className="flex items-center space-x-3.5">
-                  <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400">
-                    <Laptop className="w-4 h-4 text-cyan-400" />
+                <div className="flex items-center space-x-4">
+                  <div className="p-3 rounded-xl bg-[#091D36] border border-[rgba(116,177,235,0.25)] text-[#42D9FF]">
+                    <Laptop className="w-5 h-5" />
                   </div>
                   <div className="space-y-1">
-                    <div className="flex items-center space-x-2">
-                      <span className="text-xs font-bold text-slate-200 font-mono">
+                    <div className="flex items-center space-x-2.5">
+                      <span className="text-sm font-bold text-white font-mono">
                         Token: {sess.session_token_prefix}
                       </span>
                       {sess.is_current && (
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">
+                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#0A223F] text-[#42D9FF] border border-[#168BFF]/40 font-bold">
                           THIS DEVICE (CURRENT)
                         </span>
                       )}
                       {sess.is_active ? (
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
+                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
                           ACTIVE
                         </span>
                       ) : (
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">
+                        <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-800">
                           REVOKED / EXPIRED
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-wrap items-center gap-x-3 text-[11px] text-slate-400 font-mono">
+                    <div className="flex flex-wrap items-center gap-x-3 text-xs text-[#859DBE] font-mono">
                       <span>IP: {sess.ip_address || '127.0.0.1'}</span>
                       <span>•</span>
                       <span>Created: {new Date(sess.created_at).toLocaleTimeString()}</span>
@@ -177,9 +177,9 @@ export const SessionsTab: React.FC<SessionsTabProps> = ({ currentUser }) => {
                   <button
                     disabled={isRevoking}
                     onClick={() => handleRevokeSession(sess.id)}
-                    className="px-3 py-1.5 rounded-lg bg-rose-950/60 hover:bg-rose-900/70 border border-rose-800/60 text-rose-300 text-xs font-semibold flex items-center space-x-1 transition disabled:opacity-50"
+                    className="px-3.5 py-1.5 rounded-xl bg-rose-950/70 hover:bg-rose-900/80 border border-rose-800/60 text-rose-300 text-xs font-semibold flex items-center space-x-1.5 transition disabled:opacity-50"
                   >
-                    <Ban className="w-3.5 h-3.5" />
+                    <Ban className="w-4 h-4" />
                     <span>{isRevoking ? 'Revoking...' : 'Revoke Session'}</span>
                   </button>
                 )}

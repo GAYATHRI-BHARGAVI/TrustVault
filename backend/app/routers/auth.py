@@ -16,32 +16,52 @@ router = APIRouter(prefix="/api/auth", tags=["Authentication & Sessions"])
 
 DEMO_USERS_METADATA = [
     {
-        "email": "admin@trustvault.internal",
-        "full_name": "Chief Security Officer",
-        "role": AppRole.ADMIN,
-        "role_badge": "ADMIN",
-        "description": "System administrator with platform oversight, user management, and audit verification."
-    },
-    {
         "email": "alice@trustvault.internal",
         "full_name": "Alice Chen (Principal Architect)",
+        "password": "AlicePass123!#",
         "role": AppRole.OWNER,
         "role_badge": "OWNER",
-        "description": "Document owner who uploads confidential files and manages explicit recipient grants."
+        "description": "Document owner who uploads confidential architecture specs and manages explicit recipient grants."
     },
     {
         "email": "bob@trustvault.internal",
         "full_name": "Bob Martinez (DevOps Lead)",
+        "password": "BobPass123!#",
         "role": AppRole.VIEWER,
         "role_badge": "VIEWER",
-        "description": "Recipient with legitimate VIEW and DOWNLOAD access grants issued by Alice."
+        "description": "Collaborator with legitimate active VIEW and DOWNLOAD access grants issued by Alice."
     },
     {
         "email": "charlie@trustvault.internal",
         "full_name": "Charlie Vance (External Contractor)",
+        "password": "CharliePass123!#",
         "role": AppRole.VIEWER,
-        "role_badge": "VIEWER",
-        "description": "Contractor with revoked grants to verify that access denial occurs immediately."
+        "role_badge": "VIEWER (REVOKED)",
+        "description": "Contractor with explicitly REVOKED grants to test immediate access denial."
+    },
+    {
+        "email": "admin@trustvault.internal",
+        "full_name": "Chief Security Officer",
+        "password": "AdminPass123!#",
+        "role": AppRole.ADMIN,
+        "role_badge": "ADMIN",
+        "description": "Administrator with system oversight, user management, and emergency kill switch."
+    },
+    {
+        "email": "security@trustvault.internal",
+        "full_name": "SOC Lead Analyst",
+        "password": "SecOfficer123!#",
+        "role": AppRole.ADMIN,
+        "role_badge": "ADMIN (SOC)",
+        "description": "Security officer monitoring fleet risk scores, threat signals, and access alerts."
+    },
+    {
+        "email": "auditor@trustvault.internal",
+        "full_name": "Compliance Officer",
+        "password": "AuditorPass123!#",
+        "role": AppRole.VIEWER,
+        "role_badge": "VIEWER (AUDITOR)",
+        "description": "Compliance auditor verifying HMAC-SHA256 audit hash chains and regulatory logs."
     }
 ]
 
