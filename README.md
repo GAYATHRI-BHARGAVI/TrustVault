@@ -241,5 +241,6 @@ Interactive OpenAPI documentation is available at [http://127.0.0.1:8000/docs](h
 This development-tunnel URL may become unavailable when the tunnel or host machine is offline.
 
 ---
-
+## RENDER LIVE URL :
+**[https://trustvault-frontend-opna.onrender.com]
 **TrustVault — Secure Document Sharing with a Verifiable Audit Trail.**
